@@ -30,19 +30,20 @@ const TodoList = () => {
   };
 
   const handleDelete = async (id) => {
-    await deleteTodo(id);
-    setTodos(todos.filter((todo) => todo.id !== id));
-    const updatedTodos = await getAllTodos();
+    const updatedTodos = todos.filter((todo) => todo._id !== id);
     setTodos(updatedTodos);
+    await deleteTodo(id);
   };
 
   const handleCheck = async (id) => {
     const todoToUpdate = todos.find((todo) => todo._id === id);
     const updatedTodo = { ...todoToUpdate, completed: !todoToUpdate.completed };
-    await editTodo(id, updatedTodo);
 
-    const updatedTodos = await getAllTodos();
-    setTodos(updatedTodos);
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) => (todo._id === id ? updatedTodo : todo))
+    );
+
+    await editTodo(id, updatedTodo);
   };
 
   return (
