@@ -3,14 +3,18 @@ import useTodoCall from "../hooks/useTodoCall";
 
 const TodoList = () => {
   const [todo, setTodo] = useState("");
-  const [todos, setTodos] = useState(
-    () => JSON.parse(localStorage.getItem("todos")) || []
-  );
+  const [todos, setTodos] = useState([]);
 
   const { getAllTodos } = useTodoCall();
 
+  // UseEffect to fetch all todos from the backend
   useEffect(() => {
-    getAllTodos();
+    const fetchTodos = async () => {
+      const data = await getAllTodos();
+      console.log(data);
+      setTodos(data);
+    };
+    fetchTodos();
   }, []);
 
   const handleClick = () => {
@@ -52,8 +56,8 @@ const TodoList = () => {
         <button onClick={handleClick}>+</button>
       </div>
       <div className="todoList-container">
-        {todos.map(({ id, text, completed }) => (
-          <div className={` todo ${completed ? "completed" : ""}`} key={id}>
+        {todos?.map(({ id, text, completed }) => (
+          <div className={`todo ${completed ? "completed" : ""}`} key={id}>
             <p className={completed ? "line" : ""}>{text}</p>
             <div className="resultBox">
               <i
