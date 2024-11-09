@@ -1,0 +1,251 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+:root {
+  --color-green: #e5ffe6;
+  --color-pink: #f0c9c5;
+  --color-green-hover: #c7ffca;
+  --color-pink-hover: #e6b7b3;
+  --color-peach: #ffffff;
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-gray: #333;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-peach);
+  font-family: "Inter", sans-serif;
+  color: var(--color-black);
+}
+
+/* ---------------------------------- */
+/*               HEADER               */
+/* ---------------------------------- */
+
+.header {
+  background-color: var(--color-pink);
+  font-size: 1.6rem;
+  font-weight: 400;
+  padding: 1rem 2rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* ---------------------------------- */
+/*               WELCOME              */
+/* ---------------------------------- */
+
+.welcome {
+  max-width: 75rem;
+  margin: 1rem auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem 6rem 1rem 4rem;
+  color: var(--color-black);
+
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.welcome .hello {
+  letter-spacing: 0.1rem;
+}
+
+.welcome .date {
+  font-size: 1.2rem;
+}
+
+/* ---------------------------------- */
+/*              TODOLIST              */
+/* ---------------------------------- */
+
+.todoList {
+  max-width: 75rem;
+  padding: 1rem 4rem;
+  margin: 1rem auto;
+}
+
+.todoList-input {
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+.todoList-input input {
+  width: 60%;
+  padding: 0.8rem 1rem;
+  outline: none;
+  background-color: var(--color-peach);
+  border: 0.1rem solid var(--color-black);
+  border-radius: 0.8rem;
+
+  font-size: 1.2rem;
+}
+
+.todoList-input button {
+  width: 3.5rem;
+  height: 3.5rem;
+  border: none;
+  border-radius: 1rem;
+  transition: all 0.8s;
+  cursor: pointer;
+
+  font-size: 1.5rem;
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+/* ---------------------------------- */
+/*              CONTAINER             */
+/* ---------------------------------- */
+
+.todoList-container {
+  padding: 1rem 0rem;
+  width: 60%;
+  background-color: var(--color-peach);
+}
+
+.todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: all 0.7s;
+
+  background-color: var(--color-pink);
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+}
+
+.todo:hover {
+  background-color: var(--color-pink-hover);
+}
+
+.todo p {
+  font-size: 1.2rem;
+}
+
+.resultBox {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+.resultBox i {
+  font-size: 1.1rem;
+}
+
+.line {
+  text-decoration: line-through;
+}
+
+.completed {
+  background-color: var(--color-green);
+  transition: all 0.7s;
+}
+
+.completed:hover {
+  background-color: var(--color-green-hover);
+}
+
+/* ---------------------------------- */
+/*             RESPONSIVE             */
+/* ---------------------------------- */
+
+@media (max-width: 800px) {
+  .todoList-input input {
+    width: 80%;
+  }
+
+  .todoList-container {
+    width: 100%;
+  }
+
+  .welcome {
+    padding: 3rem 4rem 1rem 4rem;
+  }
+
+  .welcome .hello {
+    font-size: 1.8rem;
+  }
+
+  .welcome .date {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 570px) {
+  .welcome {
+    padding: 3rem 3rem 1rem 3rem;
+  }
+
+  .todoList {
+    padding: 1rem 3rem;
+  }
+
+  .welcome .hello {
+    font-size: 1.7rem;
+  }
+
+  .welcome .date {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    font-size: 1.3rem;
+  }
+  .welcome {
+    padding: 2rem 2rem 1rem 1.8rem;
+  }
+
+  .todoList {
+    padding: 0.8rem 1.8rem;
+  }
+
+  .welcome .hello {
+    font-size: 1.6rem;
+  }
+
+  .welcome .date {
+    font-size: 0.9rem;
+  }
+
+  .todoList-input {
+    gap: 3rem;
+  }
+  .todoList-input input {
+    padding: 0.5rem 1rem;
+    font-size: 1.1rem;
+  }
+
+  .todoList-input button {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .todo p {
+    font-size: 1rem;
+  }
+
+  .todoList-container {
+    padding: 0rem;
+  }
+
+  .resultBox i {
+    font-size: 0.9rem;
+  }
+}
