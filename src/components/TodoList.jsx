@@ -11,7 +11,7 @@ const TodoList = () => {
   useEffect(() => {
     const fetchTodos = async () => {
       const fetchedData = await getAllTodos();
-      console.log(fetchedData);
+      // console.log(fetchedData);
       setTodos(fetchedData);
     };
     fetchTodos();
