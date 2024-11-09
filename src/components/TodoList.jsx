@@ -5,28 +5,26 @@ const TodoList = () => {
   const [todo, setTodo] = useState("");
   const [todos, setTodos] = useState([]);
 
-  const { getAllTodos } = useTodoCall();
+  const { getAllTodos, createNewTodo } = useTodoCall();
 
   // UseEffect to fetch all todos from the backend
   useEffect(() => {
     const fetchTodos = async () => {
-      const data = await getAllTodos();
-      console.log(data);
-      setTodos(data);
+      const fetchedData = await getAllTodos();
+      console.log(fetchedData);
+      setTodos(fetchedData);
     };
     fetchTodos();
   }, []);
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (todo) {
       const newTodo = {
-        id: Date.now(),
         text: todo,
         completed: false,
       };
-      const actualTodos = [...todos, newTodo];
-      setTodos(actualTodos);
-      localStorage.setItem("todos", JSON.stringify(actualTodos));
+      const createdTodo = await createNewTodo(newTodo);
+      setTodos((prevTodos) => [...prevTodos, createdTodo]);
       setTodo("");
     }
   };

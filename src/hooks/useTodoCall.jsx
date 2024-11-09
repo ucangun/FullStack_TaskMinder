@@ -8,8 +8,10 @@ const useTodoCall = () => {
     try {
       const { data } = await axios.get(`${baseUrl}todo`);
       console.log(data);
+      return data.data;
     } catch (error) {
       console.error("Error fetching todos:", error);
+      return [];
     }
   };
 
