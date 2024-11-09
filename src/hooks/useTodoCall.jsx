@@ -6,7 +6,7 @@ const useTodoCall = () => {
   // Get all todos
   const getAllTodos = async () => {
     try {
-      const { data } = await axios.get(`${baseUrl}/todo`);
+      const { data } = await axios.get(`${baseUrl}todo`);
       console.log(data);
     } catch (error) {
       console.error("Error fetching todos:", error);
@@ -16,7 +16,7 @@ const useTodoCall = () => {
   // Create a new todo
   const createNewTodo = async (newTodo) => {
     try {
-      const { data } = await axios.post(`${baseUrl}/todo`, newTodo);
+      const { data } = await axios.post(`${baseUrl}todo`, newTodo);
       console.log(data);
     } catch (error) {
       console.error("Error creating todo:", error);
@@ -26,10 +26,7 @@ const useTodoCall = () => {
   // Edit an existing todo
   const editTodo = async (todoId, updatedTodo) => {
     try {
-      const { data } = await axios.put(
-        `${baseUrl}/todo/${todoId}`,
-        updatedTodo
-      );
+      const { data } = await axios.put(`${baseUrl}todo/${todoId}`, updatedTodo);
       console.log(data);
     } catch (error) {
       console.error("Error editing todo:", error);
@@ -39,7 +36,7 @@ const useTodoCall = () => {
   // Delete a todo
   const deleteTodo = async (todoId) => {
     try {
-      const { data } = await axios.delete(`${baseUrl}/todo/${todoId}`);
+      const { data } = await axios.delete(`${baseUrl}todo/${todoId}`);
       console.log(data);
     } catch (error) {
       console.error("Error deleting todo:", error);
