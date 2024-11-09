@@ -1,5 +1,6 @@
 {
-  "name": "my-first-app",
+  "name": "task-minder-app",
+  "proxy": "https://umut-todo-app-4752482d7bd8.herokuapp.com/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
