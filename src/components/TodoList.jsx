@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useTodoCall from "../hooks/useTodoCall";
 
 const TodoList = () => {
   const [todo, setTodo] = useState("");
   const [todos, setTodos] = useState(
     () => JSON.parse(localStorage.getItem("todos")) || []
   );
+
+  const { getAllTodos } = useTodoCall();
+
+  useEffect(() => {
+    getAllTodos();
+  }, []);
 
   const handleClick = () => {
     if (todo) {
