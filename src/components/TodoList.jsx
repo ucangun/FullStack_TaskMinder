@@ -5,7 +5,7 @@ const TodoList = () => {
   const [todo, setTodo] = useState("");
   const [todos, setTodos] = useState([]);
 
-  const { getAllTodos, createNewTodo } = useTodoCall();
+  const { getAllTodos, createNewTodo, deleteTodo } = useTodoCall();
 
   // UseEffect to fetch all todos from the backend
   useEffect(() => {
@@ -29,10 +29,11 @@ const TodoList = () => {
     }
   };
 
-  const handleDelete = (id) => {
-    const actualTodos = todos.filter((todo) => todo.id !== id);
-    setTodos(actualTodos);
-    localStorage.setItem("todos", JSON.stringify(actualTodos));
+  const handleDelete = async (id) => {
+    await deleteTodo(id);
+    setTodos(todos.filter((todo) => todo.id !== id));
+    const updatedTodos = await getAllTodos();
+    setTodos(updatedTodos);
   };
 
   const handleCheck = (id) => {
@@ -54,17 +55,17 @@ const TodoList = () => {
         <button onClick={handleClick}>+</button>
       </div>
       <div className="todoList-container">
-        {todos?.map(({ id, text, completed }) => (
-          <div className={`todo ${completed ? "completed" : ""}`} key={id}>
+        {todos?.map(({ _id, text, completed }) => (
+          <div className={`todo ${completed ? "completed" : ""}`} key={_id}>
             <p className={completed ? "line" : ""}>{text}</p>
             <div className="resultBox">
               <i
                 className="fa-solid fa-check"
-                onClick={() => handleCheck(id)}
+                onClick={() => handleCheck(_id)}
               ></i>
               <i
                 className="fa-solid fa-trash"
-                onClick={() => handleDelete(id)}
+                onClick={() => handleDelete(_id)}
               ></i>
             </div>
           </div>
