@@ -5,7 +5,7 @@ const TodoList = () => {
   const [todo, setTodo] = useState("");
   const [todos, setTodos] = useState([]);
 
-  const { getAllTodos, createNewTodo, deleteTodo } = useTodoCall();
+  const { getAllTodos, createNewTodo, editTodo, deleteTodo } = useTodoCall();
 
   // UseEffect to fetch all todos from the backend
   useEffect(() => {
@@ -36,12 +36,13 @@ const TodoList = () => {
     setTodos(updatedTodos);
   };
 
-  const handleCheck = (id) => {
-    const actualTodos = todos.map((todo) =>
-      todo.id === id ? { ...todo, completed: !todo.completed } : todo
-    );
-    setTodos(actualTodos);
-    localStorage.setItem("todos", JSON.stringify(actualTodos));
+  const handleCheck = async (id) => {
+    const todoToUpdate = todos.find((todo) => todo._id === id);
+    const updatedTodo = { ...todoToUpdate, completed: !todoToUpdate.completed };
+    await editTodo(id, updatedTodo);
+
+    const updatedTodos = await getAllTodos();
+    setTodos(updatedTodos);
   };
 
   return (
